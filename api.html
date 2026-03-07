@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>Api-call</title>
     <!-- add icon -->
      <link rel="shortcut icon" href="./assets/github-logo.png" type="">
     <!-- add daisyui and tailwind Css -->
@@ -22,6 +22,87 @@
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- design navber section logo + search -->
+    <nav class="flex justify-between items-center p-4 px-15 max-w-[1600px] m-auto mb-6">
+        <div class="flex justify-center gap-2 items-center">
+            <img class="h-[36px] w-[36px]" src="./assets/github-logo.png" alt="">
+            <h1>GitHub Issues Tracker</h1>
+        </div>
+        <div>
+            <div class="join">
+  <div>
+    <label class="input validator join-item">
+      <span><i class="fa-brands fa-sistrix"></i></span>
+      <input type="text" placeholder="Search issues..." required />
+    </label>
+  </div>
+  <button class="btn btn-neutral join-item">Search</button>
+</div>
+        </div>
+    </nav>
+
+     <!--design button section all+open+close -->
+     <section class="max-w-[1110px] m-auto p-6 shadow-md rounded-2xl">
+        <button id="all-btn" class="btn btn-primary w-[120px]">All</button>
+        <button id="open-btn" class="btn w-[120px]">Open</button>
+        <button id="closed-btn" class="btn w-[120px]">Closed</button>
+     </section>
+
+     <!-- open and close section -->
+     <section class="flex justify-between items-center max-w-[1110px] m-auto p-6 shadow-md rounded-2xl">
+        <div class="flex justify-center items-center gap-2">
+        <div ><img src="./assets/Aperture.png" alt=""></div>
+        <div>
+            <h1 class="font-semibold"><span id="length-card">50</span> Issues</h1>
+            <p class="text-[#64748B]">Track and manage your project issues</p>
+        </div>
+        </div >
+        <div class="flex justify-center items-center gap-3 mb-5">
+          <p><input type="radio" name="radio-7" class="radio radio-success" checked="checked" /> Open</p>
+          <p><input type="radio" name="radio-4" class="radio radio-primary" checked="checked" /> Closed</p>
+        </div>
+     </section>
+   
+    <!--all card show in this section  -->
+    <section id="all-issu-display" class="grid grid-cols-4 max-w-[1110px] m-auto p-6 shadow-md rounded-2xl gap-3 ">
+        <!-- <div class="px-3 py-6 shadow-md rounded-2xl space-y-3 border-t-1">
+     <div class="flex justify-between items-center">
+        <div>
+            <img src="./assets/Open-Status.png" alt="">        
+        </div>
+        <div>
+            <button class="btn bg-red-100 text-red-500 rounded-3xl ">High</button>    
+        </div>
+     </div>
+     <div>
+        <h1 class="font-semibold text-[14px]">Fix navigation menu on mobile devices</h1>
+        <p class="text-[#64748B] text-[12px]">The navigation menu doesn't collapse properly on mobile devices...</p>
+     </div>
+     <div class="flex justify-start items-center gap-3">
+        <p class=" bg-red-100 text-red-500 rounded-3xl px-5 py-1">Bug</p>
+        <p  class=" bg-[#FDE68A] text-[#D97706] rounded-3xl px-5 py-1">HELP WANTED</p>
+     </div>
+     <div class="text-[#64748b6b]">
+            <hr>
+     </div>
+      <p class="text-[#64748B]">#1 by john_doe</p>
+      <p class="text-[#64748B]">1/15/2024</p>
+     </div> -->
+ 
+    <!--    <img src="./assets/Open-Status.png" alt="">  
+            <img src="./assets/Closed- Status .png" alt="">   -->
+
+    </section>
+ 
+
+
+
+
+
+
+
+
+
     
      <!-- add java script external file -->
     <script src="./java.js"></script>
