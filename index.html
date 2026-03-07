@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
+    <!-- add icon -->
+     <link rel="shortcut icon" href="./assets/github-logo.png" type="">
     <!-- add daisyui and tailwind Css -->
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -20,10 +22,35 @@
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-     <h1 class="bg-amber-700">i am a student of class sss</h1>
+     <!-- make login page  -->
+      <section class="">
+        <div class="w-[400px] md:w-[520px] md:m-auto shadow-xl/20 rounded-2xl p-3 md:p-8">
+            <div class="flex flex-col justify-center items-center mb-5 ">
+                <img class="mb-6" src="./assets/github-logo.png" alt="">
+                <h1 class="text-[24px] font-semibold">GitHub Issues Tracker</h1>
+                <p class="text-[#64748B] text-[16px]">Sign in to manage your issues</p>
+            </div>
+     <fieldset class="fieldset border-base-300 rounded-box md:w-md w-[300px] m-auto mb-6">
 
+  <label class="label text-[#010101] ">Username</label>
+  <input id="input-value" type="text" class="input md:w-[456px]" placeholder="Enter Username" />
+
+  <label class="label text-[#010101]">Password</label>
+  <input id="input-pass" type="password" class="input md:w-[456px]" placeholder="Enter Password" />
+
+  <button id="sign-btn" class="btn btn-primary mt-4 md:w-[456px] ">Sign In</button>
+</fieldset>
+<div class="text-[#666d766c]">
+<hr>
+</div>
+<div class="text-center mt-6">
+    <p class="text-[#64748B]">Demo Credentials:</p>
+    <h2><span class=" font-semibold">Username</span>: admin</h2>
+    <h2><span class=" font-semibold ">Password</span>: admin123</h2>
+</div>
+</div>
+</section>
      <!-- add java script external file -->
       <script src="./login.js"></script>
-      <script src="./java.js"></script>
 </body>
 </html>
