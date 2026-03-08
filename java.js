@@ -1,6 +1,5 @@
 //button toggle function or selecting
 let allIssuData = [];
-console.log(allIssuData)
 const allBtn = document.getElementById('all-btn')
 const openBtn = document.getElementById('open-btn')
 const closeBtn = document.getElementById('closed-btn')
@@ -131,6 +130,22 @@ displayAllissu.appendChild(div)
 })
 }
 
+//click search Btn
+const searchBtn = document.getElementById('search-btn')
+searchBtn.addEventListener('click',function(){
+  const inputSearch = document.getElementById('input-search')
+  const inputSearchText = inputSearch.value.trim().toLowerCase()
+  //console.log(inputSearchText)
+ fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputSearchText}`)
+ .then(res => res.json())
+ .then(data => {
+  let filterData = data.data
+  //  let showSearchData = filterData.filter(item => 
+  //   item.data.toLowerCase().includes(inputSearchText))
+    allIssuDisplay(filterData)
+ })
+
+})
 
 
 
