@@ -4,9 +4,24 @@ const allBtn = document.getElementById('all-btn')
 const openBtn = document.getElementById('open-btn')
 const closeBtn = document.getElementById('closed-btn')
 const displayAllissu = document.getElementById('all-issu-display')
+const spiner = document.getElementById('spiner-add')
 let cardLength = document.getElementById('length-card')
 let currentId = 'all-btn'
 let count=0;
+
+//spinner function 
+function spainControl(value){
+  if(value == true){
+  spiner.classList.remove('hidden')
+  displayAllissu.classList.add('hidden')
+  }
+  else{
+    spiner.classList.add('hidden')
+  displayAllissu.classList.remove('hidden')
+  }
+}
+
+//btn toggle and function call 
 function toggle(id){
   currentId = id
 
@@ -23,6 +38,7 @@ function toggle(id){
   matchBtn.classList.remove('hover:bg-indigo-500')
 
   if(currentId == 'all-btn'){
+     spainControl(true)
   allIssuDisplay(allIssuData);
 
   cardLength.textContent = allIssuData.length
@@ -30,6 +46,7 @@ function toggle(id){
   //console.log('all btn is clicked')
   }
   else if(currentId == 'open-btn'){
+       spainControl(true)
     const openCard = allIssuData.filter(data => data.status == 'open')
   
     allIssuDisplay(openCard)
@@ -39,6 +56,7 @@ function toggle(id){
      //console.log('all open btn is clicked')
   }
  else{
+     spainControl(true)
    const closedCard = allIssuData.filter(data => data.status == 'closed')
     allIssuDisplay(closedCard)
        cardLength.textContent = closedCard.length
@@ -49,6 +67,7 @@ function toggle(id){
 
 //All card load Api
 async function allIssu(){
+  spainControl(true)
     url='https://phi-lab-server.vercel.app/api/v1/lab/issues';
     const res = await fetch(url)
     const data = await res.json()
@@ -60,7 +79,6 @@ async function allIssu(){
 //All card display Api
 const allIssuDisplay = (allissues)=>{
 //console.log(allissues)
-
   displayAllissu.innerHTML=" "
 allissues.forEach(issu =>{
     //this is for labels 
@@ -128,6 +146,7 @@ allissues.forEach(issu =>{
 `
 displayAllissu.appendChild(div)
 })
+  spainControl(false)
 }
 
 //click search Btn
@@ -136,6 +155,7 @@ searchBtn.addEventListener('click',function(){
   const inputSearch = document.getElementById('input-search')
   const inputSearchText = inputSearch.value.trim().toLowerCase()
   //console.log(inputSearchText)
+    spainControl(true)
  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputSearchText}`)
  .then(res => res.json())
  .then(data => {
