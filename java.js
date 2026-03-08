@@ -1,14 +1,68 @@
+//button toggle function or selecting
+let allIssuData = [];
+console.log(allIssuData)
+const allBtn = document.getElementById('all-btn')
+const openBtn = document.getElementById('open-btn')
+const closeBtn = document.getElementById('closed-btn')
+const displayAllissu = document.getElementById('all-issu-display')
+let cardLength = document.getElementById('length-card')
+let currentId = 'all-btn'
+let count=0;
+function toggle(id){
+  currentId = id
+
+  allBtn.classList.remove('btn-primary')
+  openBtn.classList.remove('btn-primary')
+  closeBtn.classList.remove('btn-primary')
+
+  allBtn.classList.add('hover:bg-indigo-500')
+  openBtn.classList.add('hover:bg-indigo-500')
+  closeBtn.classList.add('hover:bg-indigo-500')
+
+  const matchBtn =document.getElementById(id)
+  matchBtn.classList.add('btn-primary')
+  matchBtn.classList.remove('hover:bg-indigo-500')
+
+  if(currentId == 'all-btn'){
+  allIssuDisplay(allIssuData);
+
+  cardLength.textContent = allIssuData.length
+ //displayAllissu.classList.remove('hidden')
+  //console.log('all btn is clicked')
+  }
+  else if(currentId == 'open-btn'){
+    const openCard = allIssuData.filter(data => data.status == 'open')
+  
+    allIssuDisplay(openCard)
+       cardLength.textContent = openCard.length
+     // cardLength = count;
+     //displayAllOpenissu.classList.remove('hidden')
+     //console.log('all open btn is clicked')
+  }
+ else{
+   const closedCard = allIssuData.filter(data => data.status == 'closed')
+    allIssuDisplay(closedCard)
+       cardLength.textContent = closedCard.length
+     // cardLength = count;
+    // console.log('all closed btn is clicked')
+ }
+}
+
+//All card load Api
 async function allIssu(){
     url='https://phi-lab-server.vercel.app/api/v1/lab/issues';
     const res = await fetch(url)
     const data = await res.json()
     //console.log(data.data)
+    allIssuData =data.data
     allIssuDisplay(data.data)
+   // openCard(data.data)
 }
-
+//All card display Api
 const allIssuDisplay = (allissues)=>{
 //console.log(allissues)
-  const displayAllissu = document.getElementById('all-issu-display')
+
+  displayAllissu.innerHTML=" "
 allissues.forEach(issu =>{
     //this is for labels 
      const showLevel=issu.labels.map(label=>{
@@ -76,5 +130,15 @@ allissues.forEach(issu =>{
 displayAllissu.appendChild(div)
 })
 }
+
+
+
+
+
+
+
+
+
+
 
 allIssu()
