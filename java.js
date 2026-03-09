@@ -114,7 +114,7 @@ allissues.forEach(issu =>{
     }
   const div = document.createElement('div')
   div.innerHTML=`
-   <div class="px-3 py-6 shadow-md rounded-2xl space-y-3 ${borderShow}">
+   <div onclick="modalDataLoad('${issu.id}')" class="px-3 py-6 shadow-md rounded-2xl space-y-3 ${borderShow}">
      <div class="flex justify-between items-center">
         <div>
         ${issu.status == 'open' ? `<img src="./assets/Open-Status.png" alt="">` : `<img src="./assets/Closed- Status .png" alt=""> ` }
@@ -149,6 +149,92 @@ displayAllissu.appendChild(div)
   spainControl(false)
 }
 
+// fetch modal api
+async function modalDataLoad(id){
+  const res= await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+  const data = await res.json();
+  // console.log(data.data)
+  modalDataDisplay(data.data)
+}
+
+const modalDataDisplay=(modalData)=>{
+const modalShow = document.getElementById('my_modal_5');
+//this is for level 
+ const label=modalData.labels.map(item =>{
+   if(item=='bug'){
+       return ` <p class=" bg-red-100 text-red-500 rounded-3xl px-5 py-1 text-[14px]"><i class="fa-solid fa-bug"></i> ${item.toUpperCase()}</p>`
+        }
+        else if(item=='help wanted'){
+        return `<p  class=" bg-[#FDE68A] text-[#D97706] rounded-3xl px-3 py-1 text-[14px]"><i class="fa-solid fa-life-ring"></i> ${item.toUpperCase()}</p>`
+        }
+        else{
+          return ` <p  class=" bg-green-100 text-green-500 rounded-3xl px-3 py-1 text-[14px]"><i class="fa-solid fa-star-of-david"></i> ${item.toUpperCase()}</p>`
+        }
+     }).join("")
+
+//this is for priority  
+     let showPriority = ""
+        if(modalData.priority=='high'){
+         showPriority = `<button class="btn bg-red-500 text-white rounded-3xl ">${modalData.priority.toUpperCase()}</button>`
+    }
+    else if(modalData.priority == 'medium'){
+        showPriority =  `<button class="btn bg-[#e3b708] text-white rounded-3xl ">${modalData.priority.toUpperCase()}</button>`
+    }
+    else {
+            showPriority =  ` <button class="btn bg-gray-500 text-white rounded-3xl ">${modalData.priority.toUpperCase()}</button> `
+    }
+
+    // this is for status
+
+   let borderShow = " "
+    if(modalData.status=='open'){
+     borderShow =` <button class="btn btn-success rounded-3xl text-white">${modalData.status}</button>` 
+    }
+    else{
+     borderShow =`<button class="btn btn-secondary rounded-3xl text-white">${modalData.status}</button>`
+    }
+modalShow.innerHTML=`
+<div class="modal-box border-2 space-y-4 max-w-[700px]">
+    <h3 class="text-[24px] text-lg font-bold"> ${modalData.title} </h3>
+    <div class="flex justify-start gap-2 items-center">
+   <p> ${borderShow} </p>
+     <p class="text-[#64748B] text-[12px] "><i class="fa-solid fa-circle"></i>  Opened by ${modalData.author} </p>
+      <p class="text-[#64748B] text-[12px]"><i class="fa-solid fa-circle"></i> ${new Date(modalData.updatedAt).toLocaleDateString() }</p>
+    </div>
+     <div class="flex justify-start items-center gap-3">
+        ${label}
+     </div>
+    <p class="text-[#64748B] text-[16px] py-4">${modalData.description} </p>
+    <div class="flex items-center justify-between ">
+    <div>
+        <p class="text-[#64748B] text-[16px] ">Assignee:</p>
+        <p class="font-semibold text-[16px] ">${modalData.assignee ? modalData.assignee : 'there are not assignee' }</p>
+    </div>
+    <div class="pr-40 ">
+        <p class="text-[#64748B] text-[16px]">Priority:</p>
+      <p ${showPriority}</p>
+    </div>
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn btn-primary">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+      
+
+    </section>
+`
+modalShow.showModal()
+}
+
+modalDataLoad();
+
+
+
+
 //click search Btn
 const searchBtn = document.getElementById('search-btn')
 searchBtn.addEventListener('click',function(){
@@ -166,11 +252,6 @@ searchBtn.addEventListener('click',function(){
  })
 
 })
-
-
-
-
-
 
 
 
