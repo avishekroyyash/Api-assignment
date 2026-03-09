@@ -230,9 +230,7 @@ modalShow.innerHTML=`
 modalShow.showModal()
 }
 
-modalDataLoad();
-
-
+//modalDataLoad();
 
 
 //click search Btn
@@ -252,8 +250,6 @@ searchBtn.addEventListener('click',function(){
  })
 
 })
-
-
 
 
 
